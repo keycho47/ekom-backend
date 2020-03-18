@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +24,7 @@ Route::prefix('/user')->group(function (){
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/report', 'API\ReportController@getCurrentState')->name('report');
+    Route::get('/auth-user', 'API\LoginController@getAuthUser')->name('auth.user');
 
     Route::apiResources([
         'products' => 'API\ProductController',

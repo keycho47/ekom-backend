@@ -14,13 +14,13 @@ class ReportController extends Controller
         $entityState = Stock::where('entity_id' , 1)->get();
         foreach ($entityState as $stock) {
             $productPrice = Price::where('product_id', $stock->product_id)->first();
-            $current_state = $current_state - ($productPrice->price_without_tax * $stock->quantity);
+            $current_state = $current_state + ($productPrice->price_without_tax * $stock->quantity);
         }
 
         $entityState = Stock::where('entity_id' , 2)->get();
         foreach ($entityState as $stock) {
             $productPrice = Price::where('product_id', $stock->product_id)->first();
-            $current_state = $current_state + ($productPrice->price_without_tax * $stock->quantity);
+            $current_state = $current_state - ($productPrice->price_without_tax * $stock->quantity);
         }
 
         $entityState = Stock::where('entity_id' , 3)->get();
@@ -30,6 +30,11 @@ class ReportController extends Controller
         }
 
         $entityState = Stock::where('entity_id' , 4)->get();
+        foreach ($entityState as $stock) {
+            $productPrice = Price::where('product_id', $stock->product_id)->first();
+            $current_state = $current_state - ($productPrice->price_without_tax * $stock->quantity);
+        }
+        $entityState = Stock::where('entity_id' , 5)->get();
         foreach ($entityState as $stock) {
             $productPrice = Price::where('product_id', $stock->product_id)->first();
             $current_state = $current_state - ($productPrice->price_without_tax * $stock->quantity);

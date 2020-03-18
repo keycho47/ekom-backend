@@ -25,6 +25,14 @@ class LoginController extends Controller
         return response(['user' => Auth::user(), 'access_token' => $accessToken]);
 
     }
+    public function getAuthUser(){
+
+        if (!Auth::user()){
+            return response(['massage' => 'Pls login!']);
+        }
+        return response(['user' => Auth::user()]);
+
+    }
     public function register (Request $request){
         $validateData = $request->validate([
             'name' => 'required|max:55',
