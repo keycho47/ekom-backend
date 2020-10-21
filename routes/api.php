@@ -23,7 +23,9 @@ Route::prefix('/user')->group(function (){
 });
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/report', 'API\ReportController@getCurrentState')->name('report');
+
+    Route::get('/report/{date}', 'API\ReportController@getCurrentState')->name('report');
+    Route::get('/report-user/{id}', 'API\ReportController@getStockByUseId')->name('report');
     Route::get('/auth-user', 'API\LoginController@getAuthUser')->name('auth.user');
 
     Route::apiResources([
@@ -35,6 +37,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         'entity' => 'API\EntityController',
         'stock' => 'API\StockController',
     ]);
+    Route::get('/product-price/{id}', 'API\ReportController@getProductPrice')->name('product.price');
+
 });
 
 //Route::apiResources([

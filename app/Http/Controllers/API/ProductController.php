@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         $products = Product::create($request->all());
 
-        return response()->json(ProductResources::make($products), 201);
+        return response()->json($products, 201);
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        return response(ProductResources::make($product));
     }
 
     /**

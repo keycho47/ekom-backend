@@ -37,12 +37,12 @@ class LoginController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:55',
             'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ]);
         $validateData['password'] = Hash::make($validateData['password']);
         $validateData['is_active'] = true;
         $validateData['is_deleted'] = false;
-        $validateData['role_id'] = 1;
+        $validateData['role_id'] = $request['role_id'];
 
         $user = User::create($validateData);
 

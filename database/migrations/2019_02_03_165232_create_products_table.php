@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('uni_code');
             $table->timestamps();
         });
+
     }
 
     /**
